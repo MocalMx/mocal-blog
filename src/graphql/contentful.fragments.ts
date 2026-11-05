@@ -26,7 +26,7 @@ export const ContentfulAuthorFragment = graphql`
 
 export const ContentfulCoverImageFragment = graphql`
   fragment ContentfulCoverImageFragment on ContentfulAsset {
-    gatsbyImage(width: 1200, height: 630, resizeFocus: CENTER)
+    gatsbyImage(width: 1200, height: 630, cropFocus: CENTER)
   }
 `
 
