@@ -1,0 +1,16 @@
+---
+description: Document every environment variable that is added, changed, or removed
+alwaysApply: true
+---
+
+# Environment Variable Documentation (Mandatory)
+
+Whenever an environment variable is introduced, modified, or removed:
+
+1. Update `.env.example` with clear comments: purpose, expected format, required or optional, and defaults for local vs. deployed environments.
+2. Update `docs/environment-variables.md` (the Infisical Cloud source of truth, `/mocal-blog` folder, MAN-5 / MAN-6) so the variable name matches exactly what Infisical syncs to Vercel.
+3. Update `README.md` and any related runbook in `docs/` if setup or verification steps change.
+4. Build-time-only variables (variables without the `GATSBY_` prefix, read only by `gatsby-config.ts` or `gatsby-node.ts`) are documented too, marked as build-time and never exposed to the client.
+5. NEVER commit real credentials or secrets. Variables with the `GATSBY_` prefix are inlined into the client bundle and are public by definition: never store server secrets under a `GATSBY_` name.
+
+Write all comments and docs in English (see `.cursor/rules/documentation-english.mdc`).

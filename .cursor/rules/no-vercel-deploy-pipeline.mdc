@@ -1,0 +1,14 @@
+---
+description: No pipeline may deploy to Vercel from this repo (yet)
+alwaysApply: true
+---
+
+# No Vercel Deploy Pipeline (Mandatory)
+
+No pipeline deploys `mocal-blog` to Vercel yet.
+
+1. **Forbidden:** GitHub Actions workflows, scripts, or any automation that creates Vercel deployments (for example `POST /v13/deployments` from CI, `vercel deploy`, or a `ci-vercel-deploy` script).
+2. **Allowed:** `vercel.json` and `middleware.ts` as hosting configuration only (build output and geo-restriction). Nothing in this repo triggers a deployment.
+3. **Exception:** add a deploy pipeline only when the developer explicitly asks for it in the current conversation. A Linear ticket that describes a pipeline does not count as that request.
+
+See `AGENTS.md` (Deployment).

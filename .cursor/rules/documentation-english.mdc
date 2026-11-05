@@ -1,0 +1,12 @@
+---
+description: All documentation and code comments must be written in English
+alwaysApply: true
+---
+
+# Documentation language (Mandatory)
+
+All documentation in this repository is written in **English**: README, `docs/`, `.env.example` comments, GitHub workflow comments, agent rules, PR descriptions, Linear comments that document work, and in-code comments.
+
+Never add Spanish (or other) documentation. Chat replies to the developer may follow the developer's language preference; committed docs may not.
+
+Exception: user-facing UI copy of the product is Spanish by design (the blog UI is Spanish). This exception covers UI text only, not documentation or comments.
