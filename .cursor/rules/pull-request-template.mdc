@@ -1,0 +1,60 @@
+---
+description: Mandatory GitHub PR body from the repo template, Linear In Review state, and ticket comment
+alwaysApply: true
+---
+
+# Pull Request Template and Linear Ticket (Mandatory)
+
+When the agent creates a GitHub Pull Request, ALL of the following are required.
+
+## 1. Read and fill the repo template
+
+Before `gh pr create`, read `.github/PULL_REQUEST_TEMPLATE.md` and fill every section with real content. Do not invent a different outline (no `## Summary` / `## Test plan` substitutes).
+
+`gh pr create` does **not** auto-apply that file. Always pass the filled markdown as the PR **description** via `--body` (HEREDOC). Never leave the body empty.
+
+## 2. Description, never only a PR comment
+
+- Put the filled template in the PR **description** (`--body`).
+- Do **not** create the PR with an empty/short body and then post the write-up as a GitHub PR comment.
+
+```bash
+gh pr create --base develop --title "<title>" --body "$(cat <<'EOF'
+<filled contents of .github/PULL_REQUEST_TEMPLATE.md>
+EOF
+)"
+```
+
+Never use `--base main`. See `.cursor/rules/pull-request-base-branch.mdc`.
+
+## 3. Linear ticket state: In Review
+
+After the PR exists, move the matching Linear ticket (`MOC-N`) to **In Review** via Linear MCP `save_issue` (`id: "MOC-N"`, `state: "In Review"`). The Mocal App Team has no "PR created" state; **In Review** is its equivalent. Skip if it is already In Review. Never set Done, Canceled, Duplicate, or Backlog as a side effect of opening a PR.
+
+## 4. Linear ticket comment (same template) — every PR
+
+After the PR exists and the URL is known, post a **Linear comment** on the ticket with Linear MCP `save_comment` (`issueId: "MOC-N"`, markdown `body`). The ticket id comes from the branch `feat/MOC-n-...` or the conversation.
+
+The comment MUST include:
+
+1. The GitHub PR URL
+2. The same filled template used as the PR description
+
+Do this for **every** PR, including follow-up and fix PRs for the same ticket. Do not skip the comment, and do not treat the comment as a substitute for the state change (or the reverse).
+
+## Order
+
+1. `gh pr create` (base `develop`, filled template as `--body`)
+2. `save_issue` → `In Review` (skip if already)
+3. `save_comment` with PR URL + the same filled template
+4. If `save_issue` or `save_comment` fails, retry once; if it still fails, tell the user (the PR already exists).
+
+```text
+✅ gh pr create --body "<filled template>" → save_issue "In Review" → save_comment (PR URL + template)
+❌ Empty/short --body, then gh pr comment with the write-up
+❌ Custom ## Summary / ## Test plan instead of the repo template
+❌ GitHub PR without a Linear comment on MOC-N
+❌ GitHub PR while Linear stays In Progress / Todo
+```
+
+Write the PR description and the Linear comment in English (see `.cursor/rules/documentation-english.mdc`).

@@ -1,49 +1,42 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal TypeScript Starter
-</h1>
+# mocal-blog
 
-## 🚀 Quick start
+Editorial blog of Mocal (`blog.mocal.com.mx`). Gatsby 5 + TypeScript static site that sources articles from Contentful and uses Supabase for the newsletter form.
 
-1.  **Create a Gatsby site.**
+Agent rules and workflow conventions live in [`AGENTS.md`](./AGENTS.md).
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+## Local development
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
-    ```
+```bash
+npm install
+cp .env.example .env   # fill in the values, see docs/environment-variables.md
+npm run develop        # http://localhost:8000
+```
 
-2.  **Start developing.**
+| Command | Purpose |
+| --- | --- |
+| `npm run develop` | Gatsby dev server |
+| `npm run build` | Production build (output in `public/`) |
+| `npm run serve` | Serve the production build locally |
+| `npm run typecheck` | `tsc --noEmit` |
+| `npm run clean` | Clear `.cache/` and `public/` |
 
-    Navigate into your new site’s directory and start it up.
+Environment variables are documented in [`docs/environment-variables.md`](./docs/environment-variables.md).
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+## Geo-restriction
 
-3.  **Open the code and start customizing!**
+The blog is restricted to Mexico. `middleware.ts` (Vercel Routing Middleware) runs before the static cache:
 
-    Your site is now running at http://localhost:8000!
+- Visitors from `MX`, requests without the `x-vercel-ip-country` header (local development), social preview bots (`SOCIAL_PREVIEW_BOTS`), and Gatsby static assets pass through.
+- Every other visitor receives `/no-disponible/` (`src/pages/no-disponible.tsx`) with HTTP 200 and the original URL preserved.
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
+Once the site is hosted on Vercel, verify with `curl` from a non-MX location:
 
-4.  **Learn more**
+```bash
+curl -s -A "WhatsApp/2.23" https://blog.mocal.com.mx/ | grep -i 'og:title'
+curl -s -A "facebookexternalhit/1.1" https://blog.mocal.com.mx/ | grep -i 'og:title'
+curl -s https://blog.mocal.com.mx/ | grep -i 'no-disponible'
+```
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+## Deployment
 
-## 🚀 Quick start (Netlify)
-
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
-
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+Hosting is configured for Vercel through `vercel.json` (Gatsby build, `public/` output) and `middleware.ts`. **No pipeline deploys this repo to Vercel yet:** there are no GitHub Actions workflows or scripts that create Vercel deployments, and none may be added unless explicitly requested.

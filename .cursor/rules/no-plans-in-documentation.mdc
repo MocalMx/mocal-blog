@@ -1,0 +1,28 @@
+---
+description: Agent-generated plans must never be committed to documentation; only implementation, testing, and configuration guides
+alwaysApply: true
+---
+
+# No Agent Plans in Documentation (Mandatory)
+
+Documentation describes **what exists and how to use it**. It never contains plans written by an agent.
+
+## Allowed
+
+- **Implementation guides**: how the shipped code works (architecture, data flow, conventions).
+- **Testing guides**: how to run and verify it (commands, expected output, edge cases).
+- **Configuration guides**: how to set it up (env variables, third-party consoles, runbooks).
+
+## Forbidden
+
+NEVER commit any of the following to `README.md`, `docs/`, runbooks, agent rules, `.env.example`, PR files, or any other path:
+
+- Implementation plans, design proposals, or "approach" sections.
+- Task breakdowns, roadmaps, phase lists, or "next steps" / "future work" write-ups.
+- Plan-mode output or files copied from an agent's plan directory (for example `~/.claude/plans/`).
+
+## Where plans go instead
+
+- Plan-mode files stay outside the repository.
+- Planning discussion lives in the chat or in the Linear ticket.
+- Follow-ups and out-of-scope items go in the PR template `NOTES` section or a new Linear ticket.

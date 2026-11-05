@@ -1,0 +1,30 @@
+---
+description: Strict git branching rule. Applies whenever creating a branch, worktree, or opening a PR.
+alwaysApply: true
+---
+
+# Git branching — mandatory
+
+All ticket work targets the `develop` branch. `main` is off-limits during development.
+
+- **Always create new branches from `develop`, and only after pulling the latest `develop`.** Never from `main`, `demo`, another feature branch, or a stale local `develop` (unless the user explicitly asks to stack branches).
+- Sequence before creating any branch:
+  ```bash
+  git fetch origin
+  git switch develop
+  git pull --ff-only origin develop
+  git switch -c feat/MOC-123-short-kebab-description
+  ```
+  For worktrees: `git worktree add -b <branch-name> <path> develop` (after the pull).
+- **Branch naming:** for Linear ticket `MOC-N`, use `feat/MOC-<N>-<short-kebab-description>` (e.g. `feat/MOC-17-migrate-mocal-blog-to-vercel`). Never use Linear's suggested `gitBranchName` when it differs (e.g. `feature/moc-17-...`). Rename the branch immediately if it is wrong (`git branch -m`).
+- Merges and PRs go from `feat/*` into `develop` only. Never commit, push, merge, rebase onto, or open PRs targeting `main` unless the user explicitly asks for it in the current conversation.
+- If the current branch is `main` when starting ticket work, switch to `develop` first.
+- If a branch was cut from anything other than an up-to-date `develop`, move the work onto a fresh branch from `develop` before continuing. Never discard uncommitted work to do so: stash or commit it first.
+
+```text
+✅ git fetch origin && git switch develop && git pull --ff-only origin develop && git switch -c feat/MOC-17-...
+❌ git switch -c feat/MOC-17-... (from main, demo, or from a stale/other branch)
+❌ gh pr create --base main
+```
+
+See also `.cursor/rules/pull-request-base-branch.mdc`. Source of truth: `AGENTS.md`.

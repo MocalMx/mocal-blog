@@ -1,0 +1,18 @@
+---
+description: Use context-mode MCP tools so raw tool output does not flood the context window
+alwaysApply: true
+---
+
+# context-mode (Mandatory)
+
+Raw tool output floods the context window. When the context-mode MCP tools are available, use them to keep raw data in the sandbox.
+
+- **Think in code:** to analyze, count, filter, compare, or parse data, write code via `ctx_execute(language, code)` and `console.log()` only the answer. Do not read raw data into context.
+- **Gather:** `ctx_batch_execute(commands, queries)` runs several commands, indexes the output, and searches it in one call. Follow-ups: `ctx_search(queries: [...])`.
+- **Web:** `ctx_fetch_and_index(url)` then `ctx_search`. Do not dump raw HTML.
+- **Files:** `ctx_execute_file` to analyze a file. `Read` is still correct when you are going to `Edit` it.
+- **Bash** only for git, mkdir, rm, mv, navigation, and short commands (under ~20 lines of output).
+- **File writes** always use the native Write/Edit tools, never `ctx_execute` or Bash.
+- **Resume:** run `ctx_search(sort: "timeline")` before asking the user what you were working on.
+
+If the context-mode tools are not available in the session, fall back to the normal tools and keep outputs small.

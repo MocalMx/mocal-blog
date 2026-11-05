@@ -1,0 +1,21 @@
+---
+description: Mandatory PR base branch — never target main
+alwaysApply: true
+---
+
+# Pull Request Base Branch (Mandatory)
+
+When the agent creates a GitHub Pull Request, it MUST **never** use `main` as the base branch.
+
+1. **Forbidden:** `gh pr create --base main`, the GitHub API/MCP with `base: main`, or any PR whose merge target is `main`. Never omit `--base` (GitHub may default to `main`).
+2. **Default base:** `develop`, for every `feat/MOC-*` branch.
+3. **If the user asks for `main`:** do not create the PR. Explain that agent policy requires merging via `develop` first, and offer `develop` instead. Only touch `main` (releases, hotfixes) when the developer explicitly states it in the current conversation.
+
+```bash
+# ✅
+gh pr create --base develop --head feat/MOC-17-... --title "..." --body "..."
+# ❌
+gh pr create --base main ...
+```
+
+See also `.cursor/rules/git-branching.mdc` and `.cursor/rules/pull-request-template.mdc`.

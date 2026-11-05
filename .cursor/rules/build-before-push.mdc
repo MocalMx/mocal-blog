@@ -1,0 +1,24 @@
+---
+description: Run the project build before pushing or committing changes. Use when making code changes that should be verified by the full Gatsby build.
+alwaysApply: true
+---
+
+# Build before pushing — mandatory
+
+- **Before pushing or committing code changes, always run the full build** to catch TypeScript, GraphQL, and Gatsby build failures.
+
+- **Commands:** From the project root, run:
+  ```bash
+  npm run build
+  npm run typecheck
+  ```
+  `npm run build` runs `gatsby build` (output in `public/`); `npm run typecheck` runs `tsc --noEmit`.
+
+- **When to run:**
+  - After editing any TypeScript/TSX file, page queries, Gatsby config, or config that affects the build (`gatsby-config.ts`, `vercel.json`, `middleware.ts`, `package.json`).
+  - Before suggesting the user to push, or before considering the task "done" when it involved code changes.
+  - If the user or CI reports a build failure, fix the issue and run the build again to confirm.
+
+- **If the build fails:** Fix the reported errors, then re-run until it succeeds. Builds need the Contentful variables from `.env.example`; if they are missing, tell the user instead of skipping the build.
+
+- **Do not skip** the build step when the changes are limited to non-built assets if the session also included code edits elsewhere; when in doubt, run the build.
