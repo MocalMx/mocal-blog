@@ -1,0 +1,238 @@
+{
+  "contentTypes": [
+    {
+      "sys": { "id": "category", "type": "ContentType" },
+      "name": "Category",
+      "description": "Article category shown as a badge, in breadcrumbs and in the home categories section.",
+      "displayField": "title",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "slug",
+          "name": "Slug",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [{ "unique": true }],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "iconName",
+          "name": "Icon name",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": { "id": "blogPostAuthor", "type": "ContentType" },
+      "name": "Blog Post Author",
+      "description": "Author of a blog post.",
+      "displayField": "username",
+      "fields": [
+        {
+          "id": "username",
+          "name": "Username",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [{ "unique": true }],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "firstName",
+          "name": "First name",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "lastName",
+          "name": "Last name",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "bio",
+          "name": "Bio",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "validations": [],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "avatar",
+          "name": "Avatar",
+          "type": "Link",
+          "linkType": "Asset",
+          "localized": false,
+          "required": false,
+          "validations": [{ "linkMimetypeGroup": ["image"] }],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": { "id": "blogPost", "type": "ContentType" },
+      "name": "Blog Post",
+      "description": "Editorial article rendered at /articles/{slug}.",
+      "displayField": "title",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "slug",
+          "name": "Slug",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [{ "unique": true }],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "abstract",
+          "name": "Abstract",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "seoKeywords",
+          "name": "SEO keywords",
+          "type": "Array",
+          "localized": false,
+          "required": false,
+          "validations": [],
+          "disabled": false,
+          "omitted": false,
+          "items": { "type": "Symbol", "validations": [] }
+        },
+        {
+          "id": "coverImage",
+          "name": "Cover image",
+          "type": "Link",
+          "linkType": "Asset",
+          "localized": false,
+          "required": false,
+          "validations": [{ "linkMimetypeGroup": ["image"] }],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "categories",
+          "name": "Categories",
+          "type": "Link",
+          "linkType": "Entry",
+          "localized": false,
+          "required": false,
+          "validations": [{ "linkContentType": ["category"] }],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "author",
+          "name": "Author",
+          "type": "Link",
+          "linkType": "Entry",
+          "localized": false,
+          "required": false,
+          "validations": [{ "linkContentType": ["blogPostAuthor"] }],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "content",
+          "name": "Content",
+          "type": "RichText",
+          "localized": false,
+          "required": true,
+          "validations": [],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    }
+  ],
+  "editorInterfaces": [
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "contentType": { "sys": { "id": "category", "type": "Link", "linkType": "ContentType" } }
+      },
+      "controls": [
+        { "fieldId": "title", "widgetId": "singleLine", "widgetNamespace": "builtin" },
+        { "fieldId": "slug", "widgetId": "slugEditor", "widgetNamespace": "builtin" },
+        { "fieldId": "iconName", "widgetId": "singleLine", "widgetNamespace": "builtin" }
+      ]
+    },
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "contentType": { "sys": { "id": "blogPostAuthor", "type": "Link", "linkType": "ContentType" } }
+      },
+      "controls": [
+        { "fieldId": "username", "widgetId": "singleLine", "widgetNamespace": "builtin" },
+        { "fieldId": "firstName", "widgetId": "singleLine", "widgetNamespace": "builtin" },
+        { "fieldId": "lastName", "widgetId": "singleLine", "widgetNamespace": "builtin" },
+        { "fieldId": "bio", "widgetId": "markdown", "widgetNamespace": "builtin" },
+        { "fieldId": "avatar", "widgetId": "assetLinkEditor", "widgetNamespace": "builtin" }
+      ]
+    },
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "contentType": { "sys": { "id": "blogPost", "type": "Link", "linkType": "ContentType" } }
+      },
+      "controls": [
+        { "fieldId": "title", "widgetId": "singleLine", "widgetNamespace": "builtin" },
+        { "fieldId": "slug", "widgetId": "slugEditor", "widgetNamespace": "builtin" },
+        { "fieldId": "abstract", "widgetId": "singleLine", "widgetNamespace": "builtin" },
+        { "fieldId": "seoKeywords", "widgetId": "tagEditor", "widgetNamespace": "builtin" },
+        { "fieldId": "coverImage", "widgetId": "assetLinkEditor", "widgetNamespace": "builtin" },
+        { "fieldId": "categories", "widgetId": "entryLinkEditor", "widgetNamespace": "builtin" },
+        { "fieldId": "author", "widgetId": "entryLinkEditor", "widgetNamespace": "builtin" },
+        { "fieldId": "content", "widgetId": "richTextEditor", "widgetNamespace": "builtin" }
+      ]
+    }
+  ]
+}
