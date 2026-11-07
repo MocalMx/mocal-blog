@@ -73,3 +73,7 @@ Desktop.ini
 *.key
 *.cert
 *.crt
+
+# Contentful CLI artifacts (content exports and import/export error logs)
+contentful/export.json
+contentful-*-error-log-*.json
