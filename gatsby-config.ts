@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 
 dotenv.config({ path: '.env' });
 
+const GTM_CONTAINER_ID_PATTERN = /^GTM-[A-Z0-9]+$/i;
+const gtmContainerId = (process.env.GATSBY_GOOGLE_TAG_MANAGER_ID || "").trim();
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Keysely Blog — Guías y consejos sobre espacios de trabajo`,
@@ -19,14 +22,20 @@ const config: GatsbyConfig = {
      "accessToken": process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
      "spaceId": process.env.GATSBY_CONTENTFUL_SPACE_ID,
    }
-  }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-postcss", {
-   resolve: "gatsby-plugin-google-tagmanager",
-   options: {
-     id: process.env.GATSBY_GOOGLE_TAG_MANAGER_ID,
-     includeInDevelopment: false,
-     defaultDataLayer: { platform: "gatsby" },
-   }
-  }, "gatsby-plugin-sitemap", {
+  }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-postcss",
+  // GTM is only registered for a valid container ID, so an empty/invalid value never requests gtm.js?id=.
+  // The blog keeps its own dedicated container (separate from "Mocal - Web (Develop|Prod)"); see docs/environment-variables.md.
+  ...(GTM_CONTAINER_ID_PATTERN.test(gtmContainerId)
+    ? [{
+        resolve: "gatsby-plugin-google-tagmanager",
+        options: {
+          id: gtmContainerId,
+          includeInDevelopment: false,
+          defaultDataLayer: { platform: "gatsby" },
+        },
+      }]
+    : []),
+  "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
     options: {
       name: "Keysely Blog",
