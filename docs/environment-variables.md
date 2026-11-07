@@ -17,11 +17,17 @@ All variables are read at **build time** by Gatsby. Every `GATSBY_*` value is in
 | --- | --- | --- | --- |
 | `GATSBY_CONTENTFUL_SPACE_ID` | No | Yes | Contentful space (`gatsby-config.ts`) |
 | `GATSBY_CONTENTFUL_ACCESS_TOKEN` | Public (delivery token) | Yes | Contentful Delivery API (`gatsby-config.ts`) |
-| `GATSBY_GOOGLE_TAG_MANAGER_ID` | No | Optional | Google Tag Manager (`gatsby-config.ts`) |
+| `GATSBY_GOOGLE_TAG_MANAGER_ID` | No | Optional | Google Tag Manager (`gatsby-config.ts`). Format `GTM-[A-Z0-9]+`; empty or invalid disables GTM |
 | `GATSBY_SUPABASE_URL` | No | Yes | Supabase client (`src/lib/supabase.ts`) |
 | `GATSBY_SUPABASE_PUBLISHABLE_KEY` | Public (publishable key) | Yes | Supabase client (`src/lib/supabase.ts`) |
 
 `GATSBY_SUPABASE_ANON_KEY` is accepted as a legacy fallback for `GATSBY_SUPABASE_PUBLISHABLE_KEY`. Prefer the publishable key name.
+
+### Google Tag Manager
+
+The blog uses its **own dedicated container** for Contentful blog tracking, not the shared `Mocal - Web (Develop)` / `Mocal - Web (Prod)` containers used by the app, onboarding, auth and landing page (see `mocal-app-fe/docs/gtm/README.md`). The key is named `GATSBY_GOOGLE_TAG_MANAGER_ID` here, unlike `GATSBY_GOOGLE_TAGMANAGER_ID` in `mocal-landing-page`; keep each repo's name so existing Infisical entries keep working.
+
+The blog has no cookie banner, so it does not set Google Consent Mode defaults. Adding `denied` defaults without a banner that sends `consent_update` would silence every consent-aware tag in the blog container.
 
 ## Geo-restriction
 
