@@ -23,8 +23,8 @@ import {
   HowItWorksSection,
   type HowItWorksStep,
   NewsletterSection,
-  WhyKeyselySection,
-  type WhyKeyselyItem,
+  WhyMocalSection,
+  type WhyMocalItem,
 } from "../components/home";
 import type { MyQueryQuery } from "../graphql/__generated__/types";
 
@@ -33,23 +33,23 @@ const categories: CategoryCard[] = [
     title: "Oficinas Privadas",
     description: "Consejos para elegir la oficina perfecta para tu equipo.",
     icon: Building2,
-    colorClassName: "bg-brand-blue/10 text-brand-blue",
+    colorClassName: "bg-primary/10 text-primary",
   },
   {
     title: "Coworking",
     description: "Tendencias y guías sobre espacios de coworking.",
     icon: Users,
-    colorClassName: "bg-brand-lavender/10 text-brand-lavender",
+    colorClassName: "bg-brand/10 text-brand",
   },
   {
     title: "Salas de Juntas",
     description: "Tips para organizar reuniones productivas.",
     icon: BookOpen,
-    colorClassName: "bg-brand-beige/10 text-brand-beige",
+    colorClassName: "bg-highlight text-highlight-foreground",
   },
 ];
 
-const whyKeysely: WhyKeyselyItem[] = [
+const whyMocal: WhyMocalItem[] = [
   {
     title: "Reservas seguras",
     description: "Pago protegido y cancelación flexible.",
@@ -130,12 +130,12 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       <HostCtaSection
         cta={{
           label: "Lista tu espacio",
-          href: "https://keysely.com/about/publish-your-space",
+          href: "https://mocal.com.mx/about/publish-your-space",
         }}
       />
-      <WhyKeyselySection items={whyKeysely} />
+      <WhyMocalSection items={whyMocal} />
       <FinalCtaSection
-        cta={{ label: "Explorar espacios", href: "https://keysely.com/search" }}
+        cta={{ label: "Explorar espacios", href: "https://mocal.com.mx/search" }}
       />
       <NewsletterSection />
     </Layout>
@@ -145,9 +145,9 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
 export default IndexPage;
 
 export const Head: HeadFC<MyQueryQuery> = ({ data, location }) => {
-  const siteUrl = data.site?.siteMetadata?.siteUrl ?? "https://blog.keysely.com";
-  const siteName = data.site?.siteMetadata?.title ?? "Keysely Blog";
-  const title = data.site?.siteMetadata?.title ?? "Keysely Blog";
+  const siteUrl = data.site?.siteMetadata?.siteUrl ?? "https://blog.mocal.com.mx";
+  const siteName = data.site?.siteMetadata?.title ?? "Blog de Mocal";
+  const title = data.site?.siteMetadata?.title ?? "Blog de Mocal";
   const description = data.site?.siteMetadata?.description ?? "";
 
   return (

@@ -1,15 +1,15 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import { withKeyselyOriginUtm } from "../../utils/links"
+import { withMocalOriginUtm } from "../../utils/links"
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = React.useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-gray-200 bg-background/95 backdrop-blur-sm">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/keysely.svg" alt="Keysely" className="h-7 w-auto" />
+          <img src="/mocal-logo-color.svg" alt="Mocal" className="h-7 w-auto" />
           
             <span className="font-normal text-gray-500">Blog</span>
           
@@ -18,23 +18,23 @@ export function Navbar() {
         <div className="hidden items-center gap-6 md:flex">
           <Link
             to="/"
-            className="text-sm font-medium text-gray-600 transition-colors hover:text-brand-navy"
+            className="text-sm font-medium text-gray-600 transition-colors hover:text-brand"
           >
             Inicio
           </Link>
           <a
-            href={withKeyselyOriginUtm("https://keysely.com")}
+            href={withMocalOriginUtm("https://mocal.com.mx")}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-gray-600 transition-colors hover:text-brand-navy"
+            className="text-sm font-medium text-gray-600 transition-colors hover:text-brand"
           >
-            Ir a Keysely
+            Ir a Mocal
           </a>
           <a
-            href={withKeyselyOriginUtm("https://keysely.com/search")}
+            href={withMocalOriginUtm("https://mocal.com.mx/search")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-9 items-center rounded-md bg-brand-blue px-4 text-sm font-medium text-white transition-colors hover:bg-brand-blue/90"
+            className="inline-flex h-9 items-center rounded-md bg-cta px-4 text-sm font-medium text-white transition-colors hover:bg-cta/90"
           >
             Explorar espacios
           </a>
@@ -42,7 +42,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-brand-navy md:hidden"
+          className="inline-flex items-center justify-center rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-brand md:hidden"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -59,27 +59,27 @@ export function Navbar() {
       </nav>
 
       {menuOpen && (
-        <div className="border-t border-gray-200 bg-white px-4 py-4 md:hidden">
+        <div className="border-t border-gray-200 bg-background px-4 py-4 md:hidden">
           <div className="flex flex-col gap-3">
             <Link
               to="/"
-              className="text-sm font-medium text-gray-600 hover:text-brand-navy"
+              className="text-sm font-medium text-gray-600 hover:text-brand"
             >
               Inicio
             </Link>
             <a
-              href={withKeyselyOriginUtm("https://keysely.com")}
+              href={withMocalOriginUtm("https://mocal.com.mx")}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-gray-600 hover:text-brand-navy"
+              className="text-sm font-medium text-gray-600 hover:text-brand"
             >
-              Ir a Keysely
+              Ir a Mocal
             </a>
             <a
-              href={withKeyselyOriginUtm("https://keysely.com/search")}
+              href={withMocalOriginUtm("https://mocal.com.mx/search")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-9 w-fit items-center rounded-md bg-brand-blue px-4 text-sm font-medium text-white"
+              className="inline-flex h-9 w-fit items-center rounded-md bg-cta px-4 text-sm font-medium text-white"
             >
               Explorar espacios
             </a>

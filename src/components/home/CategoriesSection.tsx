@@ -23,10 +23,10 @@ export function CategoriesSection({
   categories,
 }: CategoriesSectionProps) {
   return (
-    <section id={id} className="border-t border-gray-200 bg-brand-beige-light py-16 sm:py-20">
+    <section id={id} className="border-t border-gray-200 bg-highlight py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
-          <h2 className="text-2xl font-semibold text-brand-navy sm:text-3xl">{title}</h2>
+          <h2 className="text-2xl font-semibold text-brand sm:text-3xl">{title}</h2>
           <p className="mt-2 max-w-xl text-sm text-gray-500 sm:text-base">{subtitle}</p>
         </div>
 
@@ -39,9 +39,9 @@ export function CategoriesSection({
               <div className={`flex h-12 w-12 items-center justify-center rounded-lg ${colorClassName}`}>
                 <Icon className="h-6 w-6" aria-hidden="true" />
               </div>
-              <h3 className="mt-4 font-semibold text-brand-navy">{categoryTitle}</h3>
+              <h3 className="mt-4 font-semibold text-brand">{categoryTitle}</h3>
               <p className="mt-2 text-sm text-gray-500">{description}</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-blue transition-colors group-hover:text-brand-blue/80">
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary transition-colors group-hover:text-primary/80">
                 Ver artículos <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </div>

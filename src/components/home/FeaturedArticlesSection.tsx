@@ -2,7 +2,7 @@ import * as React from "react"
 import { ArrowRight } from "lucide-react"
 import { Link } from "gatsby"
 import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image"
-import { withKeyselyOriginUtm } from "../../utils/links"
+import { withMocalOriginUtm } from "../../utils/links"
 
 export type FeaturedArticle = {
   title: string
@@ -24,12 +24,12 @@ export function FeaturedArticlesSection({
   id = "articulos",
   articles,
   title = "Artículos destacados",
-  subtitle = "Los artículos más leídos en el blog de Keysely.",
+  subtitle = "Los artículos más leídos en el blog de Mocal.",
 }: FeaturedArticlesSectionProps) {
   return (
-    <section id={id} className="border-t border-gray-200 bg-brand-blue-light py-16 sm:py-20">
+    <section id={id} className="border-t border-gray-200 bg-primary-subtle py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center text-2xl font-semibold text-brand-navy sm:text-3xl">{title}</h2>
+        <h2 className="text-center text-2xl font-semibold text-brand sm:text-3xl">{title}</h2>
         <p className="mx-auto mt-3 max-w-xl text-center text-gray-500">{subtitle}</p>
 
         <div className="mx-auto mt-12 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -46,23 +46,23 @@ export function FeaturedArticlesSection({
                     className="h-full w-full"
                   />
                 ) : (
-                  <div className="h-full w-full bg-gradient-to-br from-brand-navy to-brand-blue" />
+                  <div className="h-full w-full bg-gradient-to-br from-brand to-primary" />
                 )}
               </div>
               <div className="flex flex-1 flex-col p-6">
                 <div className="flex items-center gap-3">
-                  <span className="rounded-full bg-brand-blue/10 px-3 py-1 text-xs font-medium text-brand-blue">
+                  <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                     {article.category}
                   </span>
                   <span className="text-xs text-gray-400">{article.readTime}</span>
                 </div>
-                <h3 className="mt-3 font-semibold leading-snug text-brand-navy transition-colors group-hover:text-brand-blue">
+                <h3 className="mt-3 font-semibold leading-snug text-brand transition-colors group-hover:text-primary">
                   {article.title}
                 </h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-500">{article.excerpt}</p>
                 <Link
-                  to={withKeyselyOriginUtm(`/articles/${article.slug}`)}
-                  className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-blue"
+                  to={withMocalOriginUtm(`/articles/${article.slug}`)}
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary"
                 >
                   Leer más <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
