@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query"
 import { Layout } from "../../components/layout/Layout"
 import { NewsletterSection } from "../../components/home"
 import type { ContentfulBlogPostPageQuery } from "../../graphql/__generated__/types"
-import { withKeyselyOriginUtm } from "../../utils/links"
+import { withMocalOriginUtm } from "../../utils/links"
 import { Seo } from "../../components/seo"
 import { NewsletterSubscribeForm } from "../../components/newsletter/NewsletterSubscribeForm"
 import {
@@ -36,9 +36,9 @@ function getShareUrl(pathname: string, origin?: string | null) {
       ? window.location.origin
       : null
 
-  const base = baseFromOrigin ?? runtimeOrigin ?? "https://blog.keysely.com"
+  const base = baseFromOrigin ?? runtimeOrigin ?? "https://blog.mocal.com.mx"
   const absoluteUrl = `${base}${pathname}`
-  const urlWithUtm = withKeyselyOriginUtm(absoluteUrl)
+  const urlWithUtm = withMocalOriginUtm(absoluteUrl)
 
   try {
     const url = new URL(urlWithUtm)
@@ -72,14 +72,14 @@ function RelatedPostCard({
         {image ? (
           <GatsbyImage image={image} alt="" className="h-12 w-12" />
         ) : (
-          <div className="h-12 w-12 bg-gradient-to-br from-brand-navy to-brand-blue" />
+          <div className="h-12 w-12 bg-gradient-to-br from-brand to-primary" />
         )}
       </div>
       <div className="min-w-0 flex-1">
         {category ? (
           <p className="text-[10px] font-semibold uppercase tracking-wide text-gray-400">{category}</p>
         ) : null}
-        <p className="truncate text-sm font-medium text-brand-navy group-hover:text-brand-blue">{title}</p>
+        <p className="truncate text-sm font-medium text-brand group-hover:text-primary">{title}</p>
       </div>
     </Link>
   )
@@ -163,13 +163,13 @@ export default function ContentfulBlogPostPage({ data, location }: Props) {
             <p className="my-4 text-[15px] leading-7 text-gray-700">{children}</p>
           ),
           [BLOCKS.HEADING_1]: (_node, children) => (
-            <h1 className="mt-10 text-3xl font-semibold tracking-tight text-brand-navy">{children}</h1>
+            <h1 className="mt-10 text-3xl font-semibold tracking-tight text-brand">{children}</h1>
           ),
           [BLOCKS.HEADING_2]: (_node, children) => (
-            <h2 className="mt-10 text-xl font-semibold text-brand-navy">{children}</h2>
+            <h2 className="mt-10 text-xl font-semibold text-brand">{children}</h2>
           ),
           [BLOCKS.HEADING_3]: (_node, children) => (
-            <h3 className="mt-8 text-lg font-semibold text-brand-navy">{children}</h3>
+            <h3 className="mt-8 text-lg font-semibold text-brand">{children}</h3>
           ),
           [BLOCKS.UL_LIST]: (_node, children) => (
             <ul className="my-4 list-disc space-y-2 pl-6 text-[15px] leading-7 text-gray-700">
@@ -182,14 +182,14 @@ export default function ContentfulBlogPostPage({ data, location }: Props) {
             </ol>
           ),
           [BLOCKS.QUOTE]: (_node, children) => (
-            <blockquote className="my-8 rounded-xl bg-brand-blue-light px-6 py-5 text-sm text-brand-navy">
-              <div className="border-l-4 border-brand-blue pl-4 leading-7">{children}</div>
+            <blockquote className="my-8 rounded-xl bg-primary-subtle px-6 py-5 text-sm text-brand">
+              <div className="border-l-4 border-primary pl-4 leading-7">{children}</div>
             </blockquote>
           ),
           [INLINES.HYPERLINK]: (node, children) => (
             <a
-              href={withKeyselyOriginUtm(String(node.data.uri))}
-              className="font-medium text-brand-blue underline-offset-2 hover:underline"
+              href={withMocalOriginUtm(String(node.data.uri))}
+              className="font-medium text-primary underline-offset-2 hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -209,26 +209,26 @@ export default function ContentfulBlogPostPage({ data, location }: Props) {
             aria-label="Breadcrumb"
             className="mb-6 flex flex-wrap items-center gap-2 text-sm text-gray-500"
           >
-            <Link to="/" className="hover:text-brand-navy">
+            <Link to="/" className="hover:text-brand">
               Inicio
             </Link>
             <ChevronRight className="h-4 w-4 text-gray-400" aria-hidden="true" />
-            <Link to="/" className="hover:text-brand-navy">
+            <Link to="/" className="hover:text-brand">
               Blog
             </Link>
             <ChevronRight className="h-4 w-4 text-gray-400" aria-hidden="true" />
-            <span className="font-medium text-brand-navy">{categoryTitle}</span>
+            <span className="font-medium text-brand">{categoryTitle}</span>
           </nav>
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
             {/* Main */}
             <article className="min-w-0 lg:col-span-8">
               <div className="rounded-2xl bg-white p-6 shadow-sm sm:p-8">
-                <p className="inline-flex rounded-full bg-brand-blue/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-blue">
+                <p className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
                   {categoryTitle}
                 </p>
 
-                <h1 className="mt-4 text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl">
+                <h1 className="mt-4 text-3xl font-bold tracking-tight text-brand sm:text-4xl">
                   {post.title}
                 </h1>
 
@@ -238,11 +238,11 @@ export default function ContentfulBlogPostPage({ data, location }: Props) {
                       {avatarImage ? (
                         <GatsbyImage image={avatarImage} alt="" className="h-10 w-10" />
                       ) : (
-                        <div className="h-10 w-10 bg-gradient-to-br from-brand-navy to-brand-blue" />
+                        <div className="h-10 w-10 bg-gradient-to-br from-brand to-primary" />
                       )}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-sm font-semibold text-brand-navy">{authorName || post.author?.username}</p>
+                      <p className="text-sm font-semibold text-brand">{authorName || post.author?.username}</p>
                       <div className="mt-0.5 flex items-center gap-2 text-xs text-gray-500">
                         <CalendarDays className="h-4 w-4" aria-hidden="true" />
                         <span>{publishedAt}</span>
@@ -293,16 +293,16 @@ export default function ContentfulBlogPostPage({ data, location }: Props) {
             {/* Sidebar */}
             <aside className="min-w-0 lg:col-span-4">
               <div className="sticky top-24 space-y-6">
-                <div className="rounded-2xl bg-brand-navy p-6 text-white shadow-sm">
+                <div className="rounded-2xl bg-brand p-6 text-white shadow-sm">
                   <h2 className="text-lg font-semibold">¿Necesitas un lugar para trabajar hoy?</h2>
                   <p className="mt-2 text-sm text-white/85">
                     Reserva tu escritorio o sala de juntas en segundos. Espacios equipados y listos para ti.
                   </p>
                   <a
-                    href={withKeyselyOriginUtm("https://keysely.com/search")}
+                    href={withMocalOriginUtm("https://mocal.com.mx/search")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex h-10 w-full items-center justify-center rounded-md bg-brand-blue px-4 text-sm font-medium text-white transition-colors hover:bg-brand-blue/90"
+                    className="mt-4 inline-flex h-10 w-full items-center justify-center rounded-md bg-cta px-4 text-sm font-medium text-white transition-colors hover:bg-cta/90"
                   >
                     Reservar ahora
                   </a>
@@ -310,21 +310,21 @@ export default function ContentfulBlogPostPage({ data, location }: Props) {
 
                 {(data.related?.nodes?.length ?? 0) > 0 ? (
                   <div className="rounded-2xl bg-white p-6 shadow-sm">
-                    <h2 className="text-sm font-semibold text-brand-navy">Artículos relacionados</h2>
+                    <h2 className="text-sm font-semibold text-brand">Artículos relacionados</h2>
                     <div className="mt-4 space-y-3">
                       {data.related?.nodes?.map((p) => (
                         <RelatedPostCard
                           key={p.id ?? p.slug ?? ""}
                           title={p.title ?? ""}
                           category={p.categories?.title ?? undefined}
-                          to={withKeyselyOriginUtm(`/articles/${p.slug}`)}
+                          to={withMocalOriginUtm(`/articles/${p.slug}`)}
                           image={getImage(p.coverImage?.gatsbyImage ?? null) ?? undefined}
                         />
                       ))}
                     </div>
                     <Link
                       to="/"
-                      className="mt-4 inline-flex w-full items-center justify-center rounded-md border border-gray-200 px-4 py-2 text-sm font-medium text-brand-navy hover:bg-gray-50"
+                      className="mt-4 inline-flex w-full items-center justify-center rounded-md border border-gray-200 px-4 py-2 text-sm font-medium text-brand hover:bg-gray-50"
                     >
                       Ver todo el blog
                     </Link>
@@ -332,7 +332,7 @@ export default function ContentfulBlogPostPage({ data, location }: Props) {
                 ) : null}
 
                 <div className="rounded-2xl bg-white p-6 shadow-sm">
-                  <h2 className="text-sm font-semibold text-brand-navy">Newsletter</h2>
+                  <h2 className="text-sm font-semibold text-brand">Newsletter</h2>
                   <p className="mt-2 text-xs text-gray-500">
                     Recibe consejos de productividad y ofertas exclusivas cada semana.
                   </p>
@@ -341,8 +341,8 @@ export default function ContentfulBlogPostPage({ data, location }: Props) {
                       placeholder="Tu email"
                       buttonLabel="Suscribirme"
                       formClassName="space-y-3"
-                      inputClassName="h-10 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-brand-navy placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-blue"
-                      buttonClassName="inline-flex h-10 w-full items-center justify-center rounded-md bg-brand-blue px-4 text-sm font-medium text-white hover:bg-brand-blue/90 disabled:cursor-not-allowed disabled:opacity-80"
+                      inputClassName="h-10 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-brand placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"
+                      buttonClassName="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-white hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-80"
                       errorClassName="mt-3 text-xs text-red-600"
                     />
                   </div>
@@ -400,11 +400,11 @@ export const query = graphql`
 
 export const Head: HeadFC<ContentfulBlogPostPageQuery> = ({ data, location }) => {
   const post = data.contentfulBlogPost
-  const siteUrl = data.site?.siteMetadata?.siteUrl ?? "https://blog.keysely.com"
-  const siteName = data.site?.siteMetadata?.title ?? "Keysely Blog"
+  const siteUrl = data.site?.siteMetadata?.siteUrl ?? "https://blog.mocal.com.mx"
+  const siteName = data.site?.siteMetadata?.title ?? "Blog de Mocal"
 
   const title = post?.title ? `${post.title} — ${siteName}` : siteName
-  const description = post?.abstract ?? "Keysely Blog"
+  const description = post?.abstract ?? "Blog de Mocal"
   const keywords = (post?.seoKeywords?.filter((k): k is string => Boolean(k)) ?? null) as string[] | null
   const image = getSrc(post?.coverImage?.gatsbyImage ?? null)
   const ogImageData = getImage(post?.coverImage?.gatsbyImage ?? null)

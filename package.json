@@ -1,8 +1,8 @@
 {
-  "name": "keysely-blog",
+  "name": "mocal-blog",
   "version": "1.0.0",
   "private": true,
-  "description": "keysely-blog",
+  "description": "mocal-blog",
   "author": "Edgar Talledos",
   "keywords": [
     "gatsby"

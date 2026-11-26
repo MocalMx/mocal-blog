@@ -2,7 +2,7 @@ import * as React from "react";
 import { MapPin } from "lucide-react";
 
 import type { MainRecommendedSpace } from "../../api/mainRecommendedSpaces";
-import { withKeyselyOriginUtm } from "../../utils/links";
+import { withMocalOriginUtm } from "../../utils/links";
 import { SpaceAmenitiesBadges } from "./SpaceAmenitiesBadges";
 
 interface FeaturedSpacesProps {
@@ -21,7 +21,7 @@ export function FeaturedSpaces({
   return (
     <section className="mt-12 rounded-3xl py-8">
       <div>
-        <h2 className="text-lg font-semibold text-brand-navy">
+        <h2 className="text-lg font-semibold text-brand">
           Espacios recomendados cerca de ti
         </h2>
       </div>
@@ -46,8 +46,8 @@ export function FeaturedSpaces({
         <>
           <div className="mt-6 grid gap-6 md:grid-cols-3">
             {spaces.map((space) => {
-              const spaceUrl = withKeyselyOriginUtm(
-                `https://keysely.com/spaces/${space.id}`,
+              const spaceUrl = withMocalOriginUtm(
+                `https://mocal.com.mx/spaces/${space.id}`,
               );
 
               return (
@@ -67,7 +67,7 @@ export function FeaturedSpaces({
                         loading="lazy"
                       />
                     ) : (
-                      <div className="h-full w-full bg-gradient-to-br from-brand-navy to-brand-blue" />
+                      <div className="h-full w-full bg-gradient-to-br from-brand to-primary" />
                     )}
 
                     <div className="absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1 text-xs font-semibold text-white">
@@ -83,7 +83,7 @@ export function FeaturedSpaces({
                   </div>
 
                   <div className="flex flex-1 flex-col px-1 pb-2 pt-3 sm:px-2">
-                    <h3 className="line-clamp-2 text-sm font-semibold text-brand-navy">
+                    <h3 className="line-clamp-2 text-sm font-semibold text-brand">
                       {space.name}{" "}
                       <span className="mt-1 text-xs text-gray-500">
                         {space.area_sqm != null
@@ -106,10 +106,10 @@ export function FeaturedSpaces({
 
           <div className="mt-6 flex justify-center">
             <a
-              href={withKeyselyOriginUtm("https://keysely.com/search")}
+              href={withMocalOriginUtm("https://mocal.com.mx/search")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-gray-200 px-5 py-2 text-sm font-medium text-brand-navy hover:bg-gray-50"
+              className="inline-flex items-center justify-center rounded-full border border-gray-200 px-5 py-2 text-sm font-medium text-brand hover:bg-gray-50"
             >
               Cargar más espacios
             </a>

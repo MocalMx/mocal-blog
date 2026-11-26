@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import { withKeyselyOriginUtm } from "../../utils/links"
+import { withMocalOriginUtm } from "../../utils/links"
 
 export function Footer() {
   return (
@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2">
-              <img src="/keysely.svg" alt="Keysely" className="h-7 w-auto" />
+              <img src="/mocal-logo-color.svg" alt="Mocal" className="h-7 w-auto" />
             </Link>
             <p className="mt-3 max-w-sm text-sm text-gray-500">
               Conectando a profesionales con los mejores espacios en todo México.
@@ -17,12 +17,12 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-brand-navy">Soporte</h3>
+            <h3 className="text-sm font-semibold text-brand">Soporte</h3>
             <ul className="mt-3 space-y-2">
               <li>
                 <a
-                  href={withKeyselyOriginUtm("https://keysely.com/about/help-center")}
-                  className="text-sm text-gray-500 hover:text-brand-navy"
+                  href={withMocalOriginUtm("https://mocal.com.mx/about/help-center")}
+                  className="text-sm text-gray-500 hover:text-brand"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -31,8 +31,8 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={withKeyselyOriginUtm("https://keysely.com/legal/privacy")}
-                  className="text-sm text-gray-500 hover:text-brand-navy"
+                  href={withMocalOriginUtm("https://mocal.com.mx/privacy")}
+                  className="text-sm text-gray-500 hover:text-brand"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -41,8 +41,8 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={withKeyselyOriginUtm("https://keysely.com/legal/terms")}
-                  className="text-sm text-gray-500 hover:text-brand-navy"
+                  href={withMocalOriginUtm("https://mocal.com.mx/terms")}
+                  className="text-sm text-gray-500 hover:text-brand"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -53,11 +53,11 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-brand-navy">Síguenos</h3>
+            <h3 className="text-sm font-semibold text-brand">Síguenos</h3>
             <div className="mt-3 flex gap-4">
               <a
                 href="https://www.linkedin.com/company/keysely/"
-                className="text-gray-400 transition-colors hover:text-brand-navy"
+                className="text-gray-400 transition-colors hover:text-brand"
                 aria-label="LinkedIn"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -68,7 +68,7 @@ export function Footer() {
               </a>
               <a
                 href="https://www.facebook.com/profile.php?id=61582403333597"
-                className="text-gray-400 transition-colors hover:text-brand-navy"
+                className="text-gray-400 transition-colors hover:text-brand"
                 aria-label="Facebook"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -83,20 +83,20 @@ export function Footer() {
 
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-gray-200 pt-8 sm:flex-row">
           <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Keysely. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} Mocal. Todos los derechos reservados.
           </p>
           <div className="flex gap-6">
             <a
-              href={withKeyselyOriginUtm("https://keysely.com/legal/privacy")}
-              className="text-sm text-gray-500 hover:text-brand-navy"
+              href={withMocalOriginUtm("https://mocal.com.mx/privacy")}
+              className="text-sm text-gray-500 hover:text-brand"
               target="_blank"
               rel="noopener noreferrer"
             >
               Política de Privacidad
             </a>
             <a
-              href={withKeyselyOriginUtm("https://keysely.com/legal/cookies")}
-              className="text-sm text-gray-500 hover:text-brand-navy"
+              href={withMocalOriginUtm("https://mocal.com.mx/legal/cookies")}
+              className="text-sm text-gray-500 hover:text-brand"
               target="_blank"
               rel="noopener noreferrer"
             >

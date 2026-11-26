@@ -3,15 +3,47 @@
 @source "../pages/**/*.{js,jsx,ts,tsx}";
 @source "../components/**/*.{js,jsx,ts,tsx}";
 
+/*
+ * Mocal design tokens. Values mirror mocal-app-fe (src/index.css) and
+ * mocal-marketing/brand/identidad-de-marca.md. Components must use these
+ * semantic roles, never raw hex values.
+ */
 @theme {
-  --color-brand-navy: hsl(215 42% 17%);
-  --color-brand-navy-light: hsl(215 42% 97%);
-  --color-brand-blue: hsl(217 91% 60%);
-  --color-brand-blue-light: hsl(217 91% 97%);
-  --color-brand-beige: hsl(27 21% 71%);
-  --color-brand-beige-light: hsl(27 21% 96%);
-  --color-brand-lavender: hsl(240 55% 71%);
-  --color-brand-lavender-light: hsl(240 55% 97%);
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+  /* Page */
+  --color-background: #f8f3e8; /* cream */
+  --color-foreground: #173f38; /* forest */
+
+  /* Brand (forest green): headings, body text, dark surfaces */
+  --color-brand: #173f38;
+  --color-brand-subtle: hsl(163 18% 92%);
+
+  /* Primary UI (teal): buttons, links, focus rings */
+  --color-primary: #236c67;
+  --color-primary-subtle: hsl(173 31% 95%);
+
+  /* Call to action (orange): reserved for conversion CTAs.
+     `cta` is the AA-compliant shade for white text. */
+  --color-cta: #c2552a;
+  --color-brand-accent: #ec8150;
+
+  /* Secondary (peach): highlights and soft blocks */
+  --color-highlight: hsl(25 68% 95%);
+  --color-highlight-strong: #f1d0ba;
+  --color-highlight-foreground: #c2552a;
+
+  /* Warm neutrals tuned to the cream canvas (replace Tailwind's cool gray) */
+  --color-gray-50: hsl(41 45% 96%);
+  --color-gray-100: hsl(41 33% 92%);
+  --color-gray-200: hsl(40 33% 86%);
+  --color-gray-300: hsl(40 22% 78%);
+  --color-gray-400: hsl(160 6% 55%);
+  --color-gray-500: hsl(160 8% 37%);
+  --color-gray-600: hsl(162 12% 29%);
+  --color-gray-700: hsl(165 20% 23%);
+  --color-gray-800: hsl(168 30% 17%);
+  --color-gray-900: hsl(169 47% 12%);
 
   --radius-lg: 0.5rem;
   --radius-md: calc(0.5rem - 2px);
@@ -30,44 +62,13 @@
 }
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 215 42% 17%;
-    --card: 0 0% 100%;
-    --card-foreground: 215 42% 17%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 42% 17%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 215 42% 17%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 217 91% 97%;
-    --accent-foreground: 215 42% 17%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 217 91% 60%;
-    --radius: 0.5rem;
-
-    --brand-navy: 215 42% 17%;
-    --brand-navy-light: 215 42% 97%;
-    --brand-blue: 217 91% 60%;
-    --brand-blue-light: 217 91% 97%;
-    --brand-beige: 27 21% 71%;
-    --brand-beige-light: 27 21% 96%;
-    --brand-lavender: 240 55% 71%;
-    --brand-lavender-light: 240 55% 97%;
-  }
-
   * {
-    border-color: hsl(var(--border));
+    border-color: var(--color-gray-200);
   }
 
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
   }
 }

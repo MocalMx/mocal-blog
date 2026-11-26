@@ -24,7 +24,7 @@ export function SpaceAmenitiesBadges({ spaceId }: SpaceAmenitiesBadgesProps) {
         <AmenityIcon
           key={`${idx}-${amenity.label}`}
           iconUrl={amenity.iconUrl}
-          className="text-brand-blue"
+          className="text-primary"
           label={amenity.label}
         />
       ))}

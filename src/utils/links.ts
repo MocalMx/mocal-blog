@@ -5,24 +5,24 @@ const UTM_CONTENT_KEY = "utm_content";
 
 const UTM_DEFAULT_SOURCE = "blog";
 const UTM_DEFAULT_MEDIUM = "referral";
-const UTM_DEFAULT_CAMPAIGN = "blog_keysely";
+const UTM_DEFAULT_CAMPAIGN = "blog_mocal";
 const UTM_DEFAULT_CONTENT = "generic_link";
 
 
-function isKeyselyDomain(hostname: string) {
+function isMocalDomain(hostname: string) {
   const h = hostname.toLowerCase();
-  return h === "keysely.com" || h.endsWith(".keysely.com");
+  return h === "mocal.com.mx" || h.endsWith(".mocal.com.mx");
 }
 
 /**
  * Appends UTM parameters to:
- * - Any URL pointing to keysely.com (or subdomains)
+ * - Any URL pointing to mocal.com.mx (or subdomains)
  * - Any internal blog article URL (e.g. /articles/slug)
  *
  * It preserves existing query params and hash, and does not overwrite any UTM
  * param that is already present in the URL.
  */
-export function withKeyselyOriginUtm(inputUrl: string): string {
+export function withMocalOriginUtm(inputUrl: string): string {
   if (!inputUrl) return inputUrl;
 
   // Ignore non-http(s) schemes (mailto:, tel:, etc.)
@@ -39,10 +39,10 @@ export function withKeyselyOriginUtm(inputUrl: string): string {
     inputUrl === "/articles" ||
     inputUrl === "/articles/";
 
-  const base = "https://blog.keysely.com";
+  const base = "https://blog.mocal.com.mx";
   const url = new URL(inputUrl, base);
 
-  if (!isInternalArticle && !isKeyselyDomain(url.hostname)) {
+  if (!isInternalArticle && !isMocalDomain(url.hostname)) {
     return inputUrl;
   }
 
